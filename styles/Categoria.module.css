@@ -1,0 +1,19 @@
+.contentContainer {
+    padding: 20px
+}
+
+.contentContainer h3,
+.contentContainer h1,
+.contentContainer h2,
+.contentContainer h4,
+.contentContainer h5,
+.contentContainer h6 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contentContainer p {
+    text-align: center;
+    font-weight: 700;
+}

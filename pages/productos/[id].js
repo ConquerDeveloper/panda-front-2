@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import Constants from "../../constants/Constants";
-import Header from "../includes/header";
-import Navbar from "../includes/navbar";
-import Footer from "../includes/footer";
+import Header from "../../includes/header";
+import Navbar from "../../includes/navbar";
+import Footer from "../../includes/footer";
 import styles from "../../styles/Home.module.css";
 import {useRouter} from 'next/router';
 import Link from "next/link";

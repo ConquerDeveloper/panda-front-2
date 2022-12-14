@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from "react";
-import Header from "./includes/header";
-import Navbar from "./includes/navbar";
+import Header from "../includes/header";
+import Navbar from "../includes/navbar";
 import styles from "../styles/Home.module.css";
 import Constants from "../constants/Constants";
-import Footer from "./includes/footer";
+import Footer from "../includes/footer";
 import Link from "next/link";
 
 export default function Cart() {

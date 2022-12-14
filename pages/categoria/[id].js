@@ -1,15 +1,14 @@
-import React, {useEffect} from 'react';
-import Header from "../includes/header";
-import Navbar from "../includes/navbar";
-import Sidebar from "../includes/sidebar";
-import Carousel from "../includes/carousel";
+import React from 'react';
+import Header from "../../includes/header";
+import Navbar from "../../includes/navbar";
+import Sidebar from "../../includes/sidebar";
+import Carousel from "../../includes/carousel";
 import styles from "../../styles/Home.module.css";
 import categoryStyles from "../../styles/Categoria.module.css";
 import ReactMarkdown from "react-markdown";
-import Footer from "../includes/footer";
-import Image from "next/image";
+import Footer from "../../includes/footer";
 import Constants from "../../constants/Constants";
-import ProductCard from "../includes/product-card";
+import ProductCard from "../../includes/product-card";
 import Link from "next/link";
 
 export default function Categoria({

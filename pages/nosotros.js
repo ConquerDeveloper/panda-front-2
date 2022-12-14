@@ -1,10 +1,10 @@
-import Header from "./includes/header";
-import Navbar from "./includes/navbar";
-import Footer from "./includes/footer";
-import Sidebar from "./includes/sidebar";
+import Header from "../includes/header";
+import Navbar from "../includes/navbar";
+import Footer from "../includes/footer";
+import Sidebar from "../includes/sidebar";
 import styles from "../styles/Home.module.css";
 import whoStyles from "../styles/Nosotros.module.css";
-import Carousel from "./includes/carousel";
+import Carousel from "../includes/carousel";
 import ReactMarkdown from "react-markdown";
 import Constants from "../constants/Constants";
 

@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useCallback} from "react";
-import Header from "./includes/header";
-import Navbar from "./includes/navbar";
+import Header from "../includes/header";
+import Navbar from "../includes/navbar";
 import styles from "../styles/Home.module.css";
 import Constants from "../constants/Constants";
-import Footer from "./includes/footer";
-import emailTemplate from "./includes/email-template";
+import Footer from "../includes/footer";
+import emailTemplate from "../includes/email-template";
 import {useRouter} from "next/router";
 import Link from "next/link";
 

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Constants from "../../constants/Constants";
+import Constants from "../constants/Constants";
 import Link from "next/link";
 
 export default function Search() {

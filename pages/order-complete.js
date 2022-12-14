@@ -1,7 +1,7 @@
-import Header from "./includes/header";
-import Navbar from "./includes/navbar";
+import Header from "../includes/header";
+import Navbar from "../includes/navbar";
 import styles from "../styles/Home.module.css";
-import Footer from "./includes/footer";
+import Footer from "../includes/footer";
 import {useRouter} from "next/router";
 import Constants from "../constants/Constants";
 import React, {useEffect, useCallback, useState} from "react";

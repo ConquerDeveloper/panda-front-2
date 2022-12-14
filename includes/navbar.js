@@ -1,15 +1,15 @@
 import Image from "next/image";
-import styles from '../../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
 import Link from "next/link";
-import Constants from "../../constants/Constants";
+import Constants from "../constants/Constants";
 import {useCallback, useEffect, useState} from "react";
 import Search from "./search";
 import { v4 as uuidv4 } from 'uuid';
-import homeIcon from '../../public/images/inicio.png';
-import usIcon from '../../public/images/quienes-somos.png';
-import clientsIcon from '../../public/images/clientes.png';
-import questionsIcon from '../../public/images/preguntas.png';
-import certificatesIcon from '../../public/images/certificados.png';
+import homeIcon from '../public/images/inicio.png';
+import usIcon from '../public/images/quienes-somos.png';
+import clientsIcon from '../public/images/clientes.png';
+import questionsIcon from '../public/images/preguntas.png';
+import certificatesIcon from '../public/images/certificados.png';
 
 export default function Navbar() {
 

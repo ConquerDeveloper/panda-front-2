@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Constants from "../../constants/Constants";
-import youtubeLogo from '../../public/images/youtube-logo.webp';
+import Constants from "../constants/Constants";
+import youtubeLogo from '../public/images/youtube-logo.webp';
 import Image from "next/image";
 
 export default function Sidebar({

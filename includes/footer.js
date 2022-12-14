@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import Constants from "../../constants/Constants";
+import Constants from "../constants/Constants";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 

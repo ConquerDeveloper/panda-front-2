@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import Header from "./includes/header";
-import Navbar from "./includes/navbar";
+import Header from "../includes/header";
+import Navbar from "../includes/navbar";
 import styles from "../styles/Home.module.css";
-import Footer from "./includes/footer";
+import Footer from "../includes/footer";
 import Constants from "../constants/Constants";
-import ProductCard from "./includes/product-card";
-import Search from "./includes/search";
+import ProductCard from "../includes/product-card";
 
 export default function Productos({categoriesList}) {
 

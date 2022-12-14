@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "./includes/navbar";
-import Header from "./includes/header";
-import Footer from "./includes/footer";
-import Sidebar from "./includes/sidebar";
+import Navbar from "../includes/navbar";
+import Header from "../includes/header";
+import Footer from "../includes/footer";
+import Sidebar from "../includes/sidebar";
 import styles from "../styles/Home.module.css"
-import Carousel from "./includes/carousel";
+import Carousel from "../includes/carousel";
 import Constants from "../constants/Constants";
-import ProductCard from "./includes/product-card";
+import ProductCard from "../includes/product-card";
 import Link from "next/link";
 
 export default function Home({content, products}) {

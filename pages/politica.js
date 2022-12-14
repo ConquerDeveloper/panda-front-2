@@ -44,7 +44,7 @@ export default function Privacidad({politica}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const pageData = await fetch(`${Constants.HOST}/api/politica?populate[pagina][populate][0]=carrusel`)
     const {data: {attributes: {pagina: politica }}} = await pageData.json();

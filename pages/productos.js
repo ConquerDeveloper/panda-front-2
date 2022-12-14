@@ -175,7 +175,7 @@ export default function Productos({categoriesList}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const [categoriesData, allProductsData] = await Promise.all([
         fetch(`${Constants.HOST}/api/categorias`)
     ]);

@@ -44,7 +44,7 @@ export default function Despachos({despacho}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const pageData = await fetch(`${Constants.HOST}/api/despacho?populate[pagina][populate][0]=carrusel`)
     const {data: {attributes: {pagina: despacho }}} = await pageData.json();

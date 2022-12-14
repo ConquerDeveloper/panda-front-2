@@ -64,7 +64,7 @@ export default function Clientes({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const pageData = await fetch(`${Constants.HOST}/api/cliente?populate[Clientes][populate][0]=carrusel&populate[cliente][populate][0]=foto`)
     const {data: {attributes: {Clientes: clientes, cliente: { data: fotos_clientes }}}} = await pageData.json();

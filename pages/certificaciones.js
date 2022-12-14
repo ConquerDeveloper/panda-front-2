@@ -79,7 +79,7 @@ export default function Certificaciones({content, documents}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const [certifications, documentData] = await Promise.all([
         fetch(`${Constants.HOST}/api/ceriticaciones-pagina?populate[certificaciones][populate][0]=carrusel`),
         fetch(`${Constants.HOST}/api/certificaciones-pdfs?populate=*`)

@@ -269,7 +269,7 @@ export default function Checkout() {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const pageData = await fetch(`${Constants.HOST}/api/carritos?populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias`)
     const {data: cartList} = await pageData.json();
 

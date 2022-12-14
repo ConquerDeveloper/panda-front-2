@@ -44,7 +44,7 @@ export default function Preguntas({preguntas}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const pageData = await fetch(`${Constants.HOST}/api/pregunta?populate[preguntas][populate][0]=carrusel`)
     const {data: {attributes: {preguntas}}} = await pageData.json();
 

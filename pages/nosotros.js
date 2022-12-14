@@ -44,7 +44,7 @@ export default function Nosotros({nosotros}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const pageData = await fetch(`${Constants.HOST}/api/quien?populate[nosotros][populate][0]=carrusel`)
     const {data: {attributes: {nosotros}}} = await pageData.json();

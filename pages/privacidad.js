@@ -44,7 +44,7 @@ export default function Privacidad({privacidad}) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const pageData = await fetch(`${Constants.HOST}/api/privacidad?populate[pagina][populate][0]=carrusel`)
     const {data: {attributes: {pagina: privacidad }}} = await pageData.json();

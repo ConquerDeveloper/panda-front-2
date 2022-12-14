@@ -51,7 +51,7 @@ export default function Checkout() {
                     "from": "kjaakevin@gmail.com",
                     "subject": "Tu compra en Panda Store",
                     "html": emailTemplate(),
-                })
+                }),
             })
             if (result.status === 200) {
                 setIsLoading(false);

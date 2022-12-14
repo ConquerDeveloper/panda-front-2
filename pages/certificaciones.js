@@ -51,7 +51,7 @@ export default function Certificaciones({content, documents}) {
                                                 console.log('url', `${Constants.HOST}${documentInfo?.attributes?.url}`);
                                                 return (
                                                     <div key={id} className="col-4 pdf-container my-4">
-                                                        <Link href={`${Constants.HOST}${documentInfo?.attributes?.url}`}>
+                                                        <Link href={`${Constants.HOST}/${documentInfo?.attributes?.url}`}>
                                                             <a target={"_blank"}>
                                                                 <div className={"text-center"}>
                                                                     <Image src={imageSource} width={100} height={100}

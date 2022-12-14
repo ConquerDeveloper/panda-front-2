@@ -2,28 +2,45 @@ import Header from "../includes/header";
 import Navbar from "../includes/navbar";
 import styles from "../styles/Home.module.css";
 import Footer from "../includes/footer";
-import {useRouter} from "next/router";
+import Router from "next/router";
 import Constants from "../constants/Constants";
 import React, {useEffect, useCallback, useState} from "react";
+import { withRouter } from 'next/router';
+import emailTemplate from "../includes/email-template";
 
-export default function OrderComplete() {
-    const [cartList, setCartList] = useState([]);
-    const router = useRouter();
+function OrderComplete(props) {
+    const [cartList, setCartList] = useState(JSON.parse(Object.keys(props.router.query)[0]));
 
-    const getCart = useCallback(async () => {
-        const result = await fetch(`${Constants.HOST}/api/carritos?populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias&filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${true}`)
-        if (result.status === 200) {
-            const {data: cartList} = await result.json();
-            setCartList(cartList);
+    console.log("query", Object.keys(props.router.query)[0]);
+
+    const sendEmail = useCallback(async () => {
+        try {
+            await fetch(`${Constants.HOST}/api/email`, {
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    "to": props.router.email,
+                    "from": "kjaakevin@gmail.com",
+                    "subject": "Tu compra en Panda Store",
+                    "html": emailTemplate({
+                        emailContent: cartList,
+                    }),
+                }),
+            });
+        } catch (e) {
+            console.error(e);
         }
     }, []);
 
     useEffect(() => {
-        (async () => await getCart())();
-    }, [getCart])
+        (async () => await sendEmail())();
+    }, [sendEmail])
 
     const handleRedirect = async () => {
-        await router.push("/productos");
+        await Router.push("/productos");
     };
 
     const getTotalPrice = () => {
@@ -120,3 +137,5 @@ export default function OrderComplete() {
         </div>
     )
 }
+
+export default withRouter(OrderComplete);

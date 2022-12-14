@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import Constants from "../constants/Constants";
 import Footer from "../includes/footer";
 import emailTemplate from "../includes/email-template";
-import {useRouter} from "next/router";
+import Router from "next/router";
 import Link from "next/link";
 
 export default function Checkout() {
@@ -20,7 +20,7 @@ export default function Checkout() {
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [cartList, setCartList] = useState([]);
-    const router = useRouter();
+    // const router = useRouter();
 
     const getCart = useCallback(async () => {
         const result = await fetch(`${Constants.HOST}/api/carritos?populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias&filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`)
@@ -39,29 +39,16 @@ export default function Checkout() {
         if (e) {
             e.preventDefault();
         }
-        try {
-            const result = await fetch(`${Constants.HOST}/api/email`, {
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    "to": email,
-                    "from": "kjaakevin@gmail.com",
-                    "subject": "Tu compra en Panda Store",
-                    "html": emailTemplate(),
-                }),
-            })
-            if (result.status === 200) {
-                setIsLoading(false);
-                handleClearCart().then((response) => {
-                    router.push("/order-complete");
-                });
-            }
-        } catch (e) {
-            console.error(e);
-        }
+        setIsLoading(false);
+        handleClearCart().then(response => {
+            Router.push({
+                pathname: "/order-complete",
+                query: JSON.stringify(cartList),
+                email
+            });
+        }).catch(e => {
+            console.log("error", e);
+        });
     };
 
     const handleClearCart = async () => {

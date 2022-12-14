@@ -50,7 +50,7 @@ export default function Checkout() {
                     "to": email,
                     "from": "kjaakevin@gmail.com",
                     "subject": "Tu compra en Panda Store",
-                    "html": emailTemplate,
+                    "html": emailTemplate(),
                 })
             })
             if (result.status === 200) {

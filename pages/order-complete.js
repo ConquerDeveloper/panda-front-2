@@ -9,9 +9,7 @@ import { withRouter } from 'next/router';
 import emailTemplate from "../includes/email-template";
 
 function OrderComplete(props) {
-    const [cartList, setCartList] = useState(JSON.parse(Object.keys(props.router.query)[0]));
-
-    console.log("query", Object.keys(props.router.query)[0]);
+    const [cartList, setCartList] = useState([]);
 
     const sendEmail = useCallback(async () => {
         try {
@@ -38,6 +36,14 @@ function OrderComplete(props) {
     useEffect(() => {
         (async () => await sendEmail())();
     }, [sendEmail])
+
+    useEffect(() =>{
+        if (Object.keys(props.router.query)[0]) {
+            if (cartList.length === 0) {
+                setCartList(JSON.parse(Object.keys(props.router.query)[0]));
+            }
+        }
+    });
 
     const handleRedirect = async () => {
         await Router.push("/productos");
@@ -88,7 +94,7 @@ function OrderComplete(props) {
                                                     <p className="text-start"><strong>Su orden:</strong></p>
                                                     <div className="my-4 content">
                                                         {
-                                                            cartList.length > 0 && cartList.map((item) => {
+                                                            cartList && cartList.length > 0 && cartList.map((item) => {
                                                                 const {
                                                                     id,
                                                                     attributes: {productos: {data: productList}}

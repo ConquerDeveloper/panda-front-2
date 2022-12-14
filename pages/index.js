@@ -104,7 +104,7 @@ export default function Home({content, products}) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const [homeData, productData] = await Promise.all([
         fetch(`${Constants.HOST}/api/inicio?populate[inicio][populate][0]=carrusel`),
         fetch(`${Constants.HOST}/api/productos?populate[imagen][populate][0]=imagen&populate[categorias][populate][0]=categorias`),

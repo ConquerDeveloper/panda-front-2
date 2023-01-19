@@ -10,7 +10,6 @@ import usIcon from '../public/images/quienes-somos.png';
 import clientsIcon from '../public/images/clientes.png';
 import questionsIcon from '../public/images/preguntas.png';
 import certificatesIcon from '../public/images/certificados.png';
-import Router from "next/router";
 
 export default function Navbar() {
 

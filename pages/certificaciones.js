@@ -46,12 +46,11 @@ export default function Certificaciones({content, documents}) {
                                             documents.length && documents.map((item) => {
                                                 const {
                                                     id,
-                                                    attributes: {titulo: title, documento: {data: documentInfo}}
+                                                    attributes: {titulo: title, pdf_url}
                                                 } = item;
-                                                console.log('url', `${Constants.HOST}${documentInfo?.attributes?.url}`);
                                                 return (
                                                     <div key={id} className="col-4 pdf-container my-4">
-                                                        <Link href={`${Constants.HOST}/${documentInfo?.attributes?.url}`}>
+                                                        <Link href={`${pdf_url}`}>
                                                             <a target={"_blank"}>
                                                                 <div className={"text-center"}>
                                                                     <Image src={imageSource} width={100} height={100}
@@ -82,7 +81,7 @@ export default function Certificaciones({content, documents}) {
 export async function getServerSideProps() {
     const [certifications, documentData] = await Promise.all([
         fetch(`${Constants.HOST}/api/ceriticaciones-pagina?populate[certificaciones][populate][0]=carrusel`),
-        fetch(`${Constants.HOST}/api/certificaciones-pdfs?populate=*`)
+        fetch(`${Constants.HOST}/api/certificaciones-pdfs`)
     ]);
     const {data: {attributes: {certificaciones: content}}} = await certifications.json();
     const {data: documents} = await documentData.json();

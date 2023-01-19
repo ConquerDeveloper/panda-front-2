@@ -15,7 +15,7 @@ export default function Footer() {
             fetch(`${Constants.HOST}/api/ubicacion`),
             fetch(`${Constants.HOST}/api/horario-pie-de-pagina`),
             fetch(`${Constants.HOST}/api/contacto`),
-            fetch(`${Constants.HOST}/api/redes-sociales?populate=*`)
+            fetch(`${Constants.HOST}/api/redes-sociales`)
         ]);
         const {data: {attributes: {contenido}}} = await locationData.json();
         const {data: {attributes: {horario}}} = await attentionScheduleData.json();
@@ -70,7 +70,7 @@ export default function Footer() {
                                     return <li key={item.id}>
                                         <Link href={item?.attributes?.link}>
                                             <a>
-                                                <img src={`${Constants.HOST}${item?.attributes?.icono?.data?.attributes?.url}`} width={20} alt={item.nombre}/>
+                                                <img src={`${item?.attributes?.icono_url}`} width={20} alt={item?.attributes?.nombre}/>
                                             </a>
                                         </Link>
                                     </li>

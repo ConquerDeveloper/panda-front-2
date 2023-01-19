@@ -24,17 +24,17 @@ export default function Sidebar({
             fetch(`${Constants.HOST}/api/categorias?populate=subcategorias`),
             fetch(`${Constants.HOST}/api/horario`),
             fetch(`${Constants.HOST}/api/envios`),
-            fetch(`${Constants.HOST}/api/certificacion?populate=imagenes`),
-            fetch(`${Constants.HOST}/api/pago?populate=imagenes`),
-            fetch(`${Constants.HOST}/api/videos?populate=imagen`),
-            fetch(`${Constants.HOST}/api/encuentra?populate=imagen`),
+            fetch(`${Constants.HOST}/api/certificaciones`),
+            fetch(`${Constants.HOST}/api/pagos`),
+            fetch(`${Constants.HOST}/api/videos`),
+            fetch(`${Constants.HOST}/api/encuentra`),
         ]);
         const {data: phonesObject} = await phoneData.json();
         const {data: categoriesList} = await categoriesData.json();
         const {data: scheduleObject} = await scheduleData.json();
         const {data: shipmentList} = await shipmentData.json();
-        const {data: {attributes: {imagenes: {data: certificationsList}}}} = await certificationsData.json();
-        const {data: {attributes: {imagenes: {data: paymentsList}}}} = await paymentsData.json();
+        const {data: certificationsList} = await certificationsData.json();
+        const {data: paymentsList} = await paymentsData.json();
         const {data: videosList} = await videosData.json();
         const {data: findUsInfo} = await findUsData.json();
         setCategories(categoriesList);
@@ -115,8 +115,8 @@ export default function Sidebar({
                                 <React.Fragment key={item.id}>
                                     <div className={'text-center'}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={`${Constants.HOST}${item.attributes.url}`} width={150}
-                                             alt={item.attributes.name}/>
+                                        <img src={`${item.attributes.imagen_url}`} width={150}
+                                             />
                                     </div>
                                 </React.Fragment>
                             ))
@@ -133,8 +133,8 @@ export default function Sidebar({
                                 <React.Fragment key={item.id}>
                                     <div className={'text-center'}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={`${Constants.HOST}${item.attributes.url}`} width={150}
-                                             alt={item.attributes.name}/>
+                                        <img src={`${item.attributes.imagen_url}`} width={150}
+                                             />
                                     </div>
                                 </React.Fragment>
                             ))
@@ -164,9 +164,9 @@ export default function Sidebar({
                         {
                             <div key={findUs?.id} className="text-center">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={`${Constants.HOST}${findUs?.attributes?.imagen?.data?.attributes?.url}`}
+                                <img src={`${findUs?.attributes?.imagen_url}`}
                                      width={"150"}
-                                     alt={findUs?.attributes?.imagen?.data?.attributes?.name}/>
+                                     />
                             </div>
                         }
                     </main>
@@ -184,7 +184,7 @@ export default function Sidebar({
                                             <a href={item.attributes.link} target={"_blank"} rel={"noreferrer"}>
                                                 <div className="opacity"></div>
                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img src={`${Constants.HOST}${item.attributes.imagen.data.attributes.url}`}
+                                                <img src={`${item.attributes.imagen_url}`}
                                                      className={"img-fluid"}
                                                      alt="Antibalas"/>
                                                 <div className={"youtubeButton"}>

@@ -21,12 +21,12 @@ export default function Navbar() {
     const getLogo = useCallback(async () => {
         const [logoData, cartImageData, cartData] = await Promise.all([
             fetch(`${Constants.HOST}/api/logo?populate=*`),
-            fetch(`${Constants.HOST}/api/imagen-carrito?populate=imagen`),
+            fetch(`${Constants.HOST}/api/imagen-carrito`),
             fetch(`${Constants.HOST}/api/carritos?filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`),
         ])
         //const {data: {attributes: {imagen: {data: {attributes: {url: logoUrl}}}}}} = await logoData.json();
         const {data: {attributes: {imagen_url}}} = await logoData.json();
-        const {data: {attributes: {imagen: {data: {attributes: {url: cartImageUrl}}}}}} = await cartImageData.json();
+        const {data: {attributes: {imagen_url: cartImageUrl}}} = await cartImageData.json();
         const {data: cartCountData} = await cartData.json();
         setLogo(imagen_url);
         setCartImage(cartImageUrl);
@@ -42,8 +42,6 @@ export default function Navbar() {
             sessionStorage.setItem('client_id', uuidv4());
         }
     }, []);
-
-    console.log('logo', logo);
 
     return (
         <header>
@@ -70,7 +68,7 @@ export default function Navbar() {
                         <a>
                             {
                                 cartImage &&
-                                <Image src={`${Constants.HOST}${cartImage}`} className={styles.logo} width={100}
+                                <Image src={`${cartImage}`} className={styles.logo} width={100}
                                        height={60}
                                        alt={"Carrito"}/>
                             }

@@ -23,7 +23,7 @@ export default function Sidebar({
             fetch(`${Constants.HOST}/api/telefono`),
             fetch(`${Constants.HOST}/api/categorias?populate=subcategorias`),
             fetch(`${Constants.HOST}/api/horario`),
-            fetch(`${Constants.HOST}/api/envios?populate=imagen`),
+            fetch(`${Constants.HOST}/api/envios`),
             fetch(`${Constants.HOST}/api/certificacion?populate=imagenes`),
             fetch(`${Constants.HOST}/api/pago?populate=imagenes`),
             fetch(`${Constants.HOST}/api/videos?populate=imagen`),
@@ -97,9 +97,9 @@ export default function Sidebar({
                             shipment.length > 0 && shipment.map((item) => (
                                 <div key={item.id} className="text-center">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={`${Constants.HOST}${item.attributes.imagen.data.attributes.url}`}
+                                    <img src={`${item.attributes.imagen_url}`}
                                          width={"150"}
-                                         alt={item.attributes.imagen.data.attributes.name}/>
+                                         />
                                 </div>
                             ))
                         }

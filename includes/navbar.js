@@ -4,12 +4,13 @@ import Link from "next/link";
 import Constants from "../constants/Constants";
 import {useCallback, useEffect, useState} from "react";
 import Search from "./search";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import homeIcon from '../public/images/inicio.png';
 import usIcon from '../public/images/quienes-somos.png';
 import clientsIcon from '../public/images/clientes.png';
 import questionsIcon from '../public/images/preguntas.png';
 import certificatesIcon from '../public/images/certificados.png';
+import Router from "next/router";
 
 export default function Navbar() {
 
@@ -23,10 +24,11 @@ export default function Navbar() {
             fetch(`${Constants.HOST}/api/imagen-carrito?populate=imagen`),
             fetch(`${Constants.HOST}/api/carritos?filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`),
         ])
-        const {data: {attributes: {imagen: {data: {attributes: {url: logoUrl}}}}}} = await logoData.json();
+        //const {data: {attributes: {imagen: {data: {attributes: {url: logoUrl}}}}}} = await logoData.json();
+        const {data: {attributes: {imagen_url}}} = await logoData.json();
         const {data: {attributes: {imagen: {data: {attributes: {url: cartImageUrl}}}}}} = await cartImageData.json();
         const {data: cartCountData} = await cartData.json();
-        setLogo(logoUrl);
+        setLogo(imagen_url);
         setCartImage(cartImageUrl);
         setCartCount(cartCountData);
     }, []);
@@ -41,6 +43,7 @@ export default function Navbar() {
         }
     }, []);
 
+    console.log('logo', logo);
 
     return (
         <header>
@@ -48,7 +51,7 @@ export default function Navbar() {
                 <div>
                     <span className={"style-me"}>
                     {
-                        logo && <Image src={`${Constants.HOST}${logo}`} className={styles.logo} width={100} height={90}
+                        logo && <Image src={`${logo}`} className={styles.logo} width={100} height={90}
                                        alt={"Logo"}/>
                     }
                     </span>
@@ -67,7 +70,8 @@ export default function Navbar() {
                         <a>
                             {
                                 cartImage &&
-                                <Image src={`${Constants.HOST}${cartImage}`} className={styles.logo} width={100} height={60}
+                                <Image src={`${Constants.HOST}${cartImage}`} className={styles.logo} width={100}
+                                       height={60}
                                        alt={"Carrito"}/>
                             }
                         </a>
@@ -102,7 +106,8 @@ export default function Navbar() {
                             <span>Preguntas Frecuentes</span></a></Link>
                     </li>
                     <li>
-                        <Link href="/certificaciones"><a><Image src={certificatesIcon} width={20} height={20} alt="Certificaciones"/>
+                        <Link href="/certificaciones"><a><Image src={certificatesIcon} width={20} height={20}
+                                                                alt="Certificaciones"/>
                             <span>Certificaciones</span>
                         </a></Link>
                     </li>

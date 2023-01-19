@@ -38,11 +38,11 @@ export default function Clientes({
                                     <div className="row mb-4">
                                             {
                                                 fotos_clientes.length > 0 && fotos_clientes.map((item) => {
-                                                    const { attributes: { nombre_cliente, foto: { data: { attributes: { url, name } } } }, id } = item;
+                                                    const { attributes: { nombre_cliente, imagen_url }, id } = item;
                                                     return (
                                                         <div key={id} className="col-4">
                                                             <div className={"text-center my-2"}>
-                                                                <img src={`${Constants.HOST}${url}`} width="150" className={"img-fluid"} alt={name}/>
+                                                                <img src={`${imagen_url}`} width="150" className={"img-fluid"} alt={nombre_cliente}/>
                                                                 <p className={"text-center mt-2"}><strong>{ nombre_cliente }</strong></p>
                                                             </div>
                                                          </div>

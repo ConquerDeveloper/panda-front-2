@@ -82,7 +82,7 @@ export default function Producto({id, productInfo}) {
                                                 <div className="col-2">
                                                     {
                                                         productInfo.imagen.data.length && productInfo.imagen.data.map((item) => (
-                                                            <div key={item.id}>
+                                                            <div key={item.id} style={{marginBottom: 10}}>
                                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                                                 <img src={`${Constants.HOST}${item.attributes.url}`}
                                                                      className={"img-fluid"}

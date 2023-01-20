@@ -100,24 +100,6 @@ export default function Cart() {
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                 {/*       <div className={"quantity-selector"}>
-                                                                            <div className="input-group mb-3">
-                                                                                <button
-                                                                                    className="btn btn-outline-secondary"
-                                                                                    type="button" id="button-addon2">-
-                                                                                </button>
-                                                                                <input type="number"
-                                                                                       className="form-control text-center"
-                                                                                       value={1}
-                                                                                       placeholder="Recipient's username"
-                                                                                       aria-label="Recipient's username"
-                                                                                       aria-describedby="button-addon2"/>
-                                                                                <button
-                                                                                    className="btn btn-outline-secondary btn-plus"
-                                                                                    type="button" id="button-addon2">+
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>*/}
                                                                         <div className="price">
                                                                             <h1>${productList[0].attributes.precio_unidad.toLocaleString('en-US')}CLP</h1>
                                                                         </div>

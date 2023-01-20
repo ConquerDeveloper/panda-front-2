@@ -83,7 +83,7 @@ export default function Categoria({
                                         <div className={`container`}>
                                             <div className="row">
                                                 {
-                                                    products.length > 0 && products.map((item) => {
+                                                    products.length > 0 && products.slice(0, 4).map((item) => {
                                                         return (
                                                             <div className={`col-3 text-start`} key={item.id}>
                                                                 <ProductCard productItem={item}/>
@@ -93,7 +93,7 @@ export default function Categoria({
                                                 }
                                             </div>
                                             {
-                                                !subcategories.length &&
+                                                subcategories.length === 0 &&
                                                 <div className="row mt-4">
                                                     <div className="col-12">
                                                         <div className="text-end">

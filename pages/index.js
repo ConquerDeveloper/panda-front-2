@@ -34,7 +34,7 @@ export default function Home({content, products}) {
                                 <div className="container">
                                     <div className="row">
                                         {
-                                            products?.length > 0 && products.map((item) => {
+                                            products?.length > 0 && products.slice(0, 9).map((item) => {
                                                 return (
                                                     <div className={`col-4 my-3`} key={item.id}>
                                                         <ProductCard productItem={item}/>
@@ -66,7 +66,7 @@ export default function Home({content, products}) {
                                         <div className="container">
                                             <div className="row">
                                                 {
-                                                    productosDestacados.map((item) => {
+                                                    productosDestacados.slice(0, 9).map((item) => {
                                                         return (
                                                             <div className={`col-4 my-3`} key={item.id}>
                                                                 <ProductCard productItem={item}/>

@@ -84,7 +84,7 @@ export default function Producto({id, productInfo}) {
                                                         productInfo.imagen.data.length && productInfo.imagen.data.map((item) => (
                                                             <div key={item.id} style={{marginBottom: 10}}>
                                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                                <img src={`${Constants.HOST}${item.attributes.url}`}
+                                                                <img src={`${item.attributes.url}`}
                                                                      className={"img-fluid"}
                                                                      alt={item.attributes.name}/>
                                                             </div>
@@ -94,7 +94,7 @@ export default function Producto({id, productInfo}) {
                                                 <div className="col-10">
                                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                                     <img
-                                                        src={`${Constants.HOST}${productInfo.imagen.data[0].attributes.url}`}
+                                                        src={`${productInfo.imagen.data[0].attributes.url}`}
                                                         className={"img-fluid"}
                                                         alt={productInfo.imagen.data[0].attributes.name}/>
                                                 </div>

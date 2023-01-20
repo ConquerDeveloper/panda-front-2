@@ -180,7 +180,7 @@ export default function Producto({id, productInfo}) {
         </div>
     )
 }
-
+/*
 export async function getStaticPaths() {
     const res = await fetch(`${Constants.HOST}/api/productos/?populate[imagen][populate][0]=imagen&populate[categorias][populate][0]=categoria`)
     const products = await res.json()
@@ -190,11 +190,11 @@ export async function getStaticPaths() {
     }))
 
     return {paths, fallback: false}
-}
+}*/
 
-export async function getStaticProps({params}) {
+export async function getServerSideProps(context) {
 
-    const pageData = await fetch(`${Constants.HOST}/api/productos/${params.id}?populate[imagen][populate][0]=imagen&populate[categorias][populate][0]=categoria`);
+    const pageData = await fetch(`${Constants.HOST}/api/productos/${context.query.id}?populate[imagen][populate][0]=imagen&populate[categorias][populate][0]=categoria`);
 
     const {
         data: {

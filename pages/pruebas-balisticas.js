@@ -9,12 +9,13 @@ import whoStyles from "../styles/Nosotros.module.css";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import youtubeLogo from "../public/images/youtube-logo.webp";
+import Link from "next/link";
 
 export default function PruebasBalisticas({
- pruebasBalisticas,
- videosList
-}) {
-    console.log('videosList', videosList);
+                                              pruebasBalisticas,
+                                              videosList
+                                          }) {
+    console.log('image video', pruebasBalisticas);
     return (
         <div className={"page-container"}>
             <Header/>
@@ -38,26 +39,46 @@ export default function PruebasBalisticas({
                                     <ReactMarkdown>{pruebasBalisticas.contenido}</ReactMarkdown>
                                 </div>
                                 <div className="container">
-                                   <div className="row mb-4">
+                                    <div className="row mb-4">
                                         {
                                             videosList.length > 0 && videosList.map((item) => {
-                                                <div className="video-block-container">
-                                                    <div className="video-container">
-                                                        <a href={item.attributes.link} target={"_blank"} rel={"noreferrer"}>
-                                                            <div className="opacity"></div>
-                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img src={`${item.attributes.imagen_url}`}
-                                                                 className={"img-fluid"}
-                                                                 alt="Antibalas"/>
-                                                            <div className={"youtubeButton"}>
-                                                                <Image src={youtubeLogo} width={60} height={40} alt=""/>
+                                                return (
+                                                    <div key={item.id} className="col-4">
+                                                        <div className="video-block-container">
+                                                            <div className="video-container">
+                                                                <a href={item.attributes.link} target={"_blank"}
+                                                                   rel={"noreferrer"}>
+                                                                    <div className="opacity"></div>
+                                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                                    <img src={`${item.attributes.imagen_url}`}
+                                                                         className={"img-fluid"}
+                                                                         alt="Antibalas"/>
+                                                                    <div className={"youtubeButton"}>
+                                                                        <Image src={youtubeLogo} width={60} height={40}
+                                                                               alt=""/>
+                                                                    </div>
+                                                                </a>
                                                             </div>
-                                                        </a>
+                                                            <p><strong>{item.attributes.titulo}</strong></p>
+                                                        </div>
                                                     </div>
-                                                    <p><strong>{item.attributes.titulo}</strong></p>
-                                                </div>
+                                                );
                                             })
                                         }
+                                    </div>
+                                </div>
+                                <div className="container-fluid d-flex h-100">
+                                    <div className="row justify-content-center align-self-center">
+                                        <div className="col-6">
+                                            <Link href={pruebasBalisticas?.link_imagen_pie_de_pagina}>
+                                                <a target="_blank">
+                                                    <img src={pruebasBalisticas?.imagen_pie_de_pagina?.data?.attributes?.url} width={150} alt=""/>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                        <div className="col-6">
+                                            <h1><strong><i>{pruebasBalisticas.texto_pie_de_pagina}</i></strong></h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +96,7 @@ export default function PruebasBalisticas({
 
 export async function getServerSideProps() {
     const [pruebasBalisticasData, videosData] = await Promise.all([
-        fetch(`${Constants.HOST}/api/prueba-balistica?populate[sitio][populate][0]=carrusel`),
+        fetch(`${Constants.HOST}/api/prueba-balistica?populate[sitio][populate][0]=carrusel&populate[sitio][populate][1]=imagen_pie_de_pagina`),
         fetch(`${Constants.HOST}/api/videos`)
     ]);
     const {data: {attributes: {sitio: pruebasBalisticas}}} = await pruebasBalisticasData.json();

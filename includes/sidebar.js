@@ -99,7 +99,7 @@ export default function Sidebar({
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={`${item.attributes.imagen_url}`}
                                          width={"150"}
-                                         />
+                                    />
                                 </div>
                             ))
                         }
@@ -116,7 +116,7 @@ export default function Sidebar({
                                     <div className={'text-center'}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img src={`${item.attributes.imagen_url}`} width={150}
-                                             />
+                                        />
                                     </div>
                                 </React.Fragment>
                             ))
@@ -134,7 +134,7 @@ export default function Sidebar({
                                     <div className={'text-center'}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img src={`${item.attributes.imagen_url}`} width={150}
-                                             />
+                                        />
                                     </div>
                                 </React.Fragment>
                             ))
@@ -166,7 +166,7 @@ export default function Sidebar({
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={`${findUs?.attributes?.imagen_url}`}
                                      width={"150"}
-                                     />
+                                />
                             </div>
                         }
                     </main>
@@ -177,20 +177,22 @@ export default function Sidebar({
                     </header>
                     <main>
                         {
-                            videos.length > 0 && videos.map((item) => (
+                            videos.length > 0 && videos.slice(0, 7).map((item) => (
                                 <React.Fragment key={item.id}>
                                     <div className="video-block-container">
                                         <div className={"video-container"}>
-                                            <a href={item.attributes.link} target={"_blank"} rel={"noreferrer"}>
-                                                <div className="opacity"></div>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img src={`${item.attributes.imagen_url}`}
-                                                     className={"img-fluid"}
-                                                     alt="Antibalas"/>
-                                                <div className={"youtubeButton"}>
-                                                    <Image src={youtubeLogo} width={60} height={40} alt=""/>
-                                                </div>
-                                            </a>
+                                            <Link href="/pruebas-balisticas">
+                                                <a rel={"noreferrer"}>
+                                                    <div className="opacity"></div>
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    <img src={`${item.attributes.imagen_url}`}
+                                                         className={"img-fluid"}
+                                                         alt="Antibalas"/>
+                                                    <div className={"youtubeButton"}>
+                                                        <Image src={youtubeLogo} width={60} height={40} alt=""/>
+                                                    </div>
+                                                </a>
+                                            </Link>
                                         </div>
                                         <p><strong>{item.attributes.titulo}</strong></p>
                                     </div>

@@ -120,7 +120,7 @@ export default function Categoria({
     );
 }
 
-export async function getStaticPaths() {
+/*export async function getStaticPaths() {
     const res = await fetch(`${Constants.HOST}/api/categorias`)
     const categories = await res.json()
 
@@ -129,11 +129,11 @@ export async function getStaticPaths() {
     }))
 
     return {paths, fallback: false}
-}
+}*/
 
-export async function getStaticProps({params}) {
+export async function getServerSideProps(context) {
 
-    const pageData = await fetch(`${Constants.HOST}/api/categorias/${params.id}?populate[carrusel][populate][0]=carrusel&populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias&populate[subcategorias][populate][0]=productos.imagen&populate[subcategorias][populate][1]=productos.categorias`);
+    const pageData = await fetch(`${Constants.HOST}/api/categorias/${context.query.id}?populate[carrusel][populate][0]=carrusel&populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias&populate[subcategorias][populate][0]=productos.imagen&populate[subcategorias][populate][1]=productos.categorias`);
 
     const {
         data: {

@@ -38,7 +38,7 @@ export default function Carousel({carouselImages = []}) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-                src={`${Constants.HOST}${carouselImages[0].attributes.url}`}
+                src={`${carouselImages[0].attributes.url}`}
                 alt={carouselImages[0].attributes.name}
                 className="d-block w-100"/>
         )

@@ -173,7 +173,7 @@ export default function Sidebar({
                 </section>
                 <section>
                     <header>
-                        <h1>Videos</h1>
+                        <h1>Pruebas balísticas</h1>
                     </header>
                     <main>
                         {

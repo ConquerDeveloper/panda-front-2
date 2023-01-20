@@ -21,7 +21,7 @@ function OrderComplete(props) {
                 method: "POST",
                 body: JSON.stringify({
                     "to": props.router.email,
-                    "from": "kjaakevin@gmail.com",
+                    "from": "ps.erwin.stephan@gmail.com",
                     "subject": "Tu compra en Panda Store",
                     "html": emailTemplate({
                         emailContent: cartList,

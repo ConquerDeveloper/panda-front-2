@@ -12,7 +12,7 @@ export default function Carousel({carouselImages = []}) {
                                 <div className={`carousel-item ${index === 0 && "active"}`}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
-                                        src={`${Constants.HOST}${item.attributes.url}`}
+                                        src={`${item.attributes.url}`}
                                         alt={item.attributes.name}
                                         className="d-block w-100"/>
                                 </div>
@@ -43,7 +43,7 @@ export default function Carousel({carouselImages = []}) {
                 className="d-block w-100"/>
         )
     }
-    if (!carouselImages?.length) {
+    if (carouselImages?.length === 0) {
         return null;
     }
 

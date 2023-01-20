@@ -70,7 +70,7 @@ export default function PruebasBalisticas({
                                 <div className="container-fluid d-flex h-100">
                                     <div className="row justify-content-center align-self-center">
                                         <div className="col-6">
-                                            <Link href={pruebasBalisticas?.link_imagen_pie_de_pagina}>
+                                            <Link href={`${pruebasBalisticas?.link_imagen_pie_de_pagina}`}>
                                                 <a target="_blank">
                                                     <img src={pruebasBalisticas?.imagen_pie_de_pagina?.data?.attributes?.url} width={150} alt=""/>
                                                 </a>

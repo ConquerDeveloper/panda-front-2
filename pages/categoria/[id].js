@@ -128,7 +128,7 @@ export async function getStaticPaths() {
         params: {id: category.id.toString()},
     }))
 
-    return {paths, fallback: true}
+    return {paths, fallback: false}
 }
 
 export async function getStaticProps({params}) {

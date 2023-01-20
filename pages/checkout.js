@@ -195,7 +195,7 @@ export default function Checkout() {
                                                                             <div className={"product-preview-container"}>
                                                                                 <div>
                                                                                     <img
-                                                                                        src={`${Constants.HOST}${productList[0].attributes.imagen.data[0].attributes.url}`}
+                                                                                        src={`${productList[0].attributes.imagen.data[0].attributes.url}`}
                                                                                         width={48}
                                                                                         alt={productList[0].attributes.titulo}/>
                                                                                 </div>

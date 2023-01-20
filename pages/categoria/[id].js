@@ -35,7 +35,7 @@ export default function Categoria({
                                 <Carousel carouselImages={carousel}/>
                             </div>
                             {
-                                subcategories && subcategories.length && subcategories.map((item) => {
+                                subcategories && subcategories.length > 0 && subcategories.map((item) => {
                                     const { id, attributes: { titulo, texto, productos:{ data: productsList } } } = item;
                                     return (
                                         <React.Fragment key={id}>
@@ -46,7 +46,7 @@ export default function Categoria({
                                                 <div className="container">
                                                     <div className="row">
                                                         {
-                                                            productsList.length && productsList.slice(0, 4).map((item) => {
+                                                            productsList.length > 0 && productsList.slice(0, 4).map((item) => {
                                                                 return (
                                                                     <div className={`col-4 text-start`} key={item.id}>
                                                                         <ProductCard productItem={item}/>
@@ -71,7 +71,7 @@ export default function Categoria({
                                 })
                             }
                             {
-                                !subcategories.length &&
+                                subcategories.length === 0 &&
                                 <React.Fragment>
                                     <div className={styles.subtitleLabel}>
                                         <h1>{title}</h1>

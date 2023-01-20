@@ -1,4 +1,4 @@
-const emailTemplate = ({emailContent}) => '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">\n' +
+const emailTemplate = () => '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">\n' +
     '<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>\n' +
     '<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>\n' +
     '<!------ Include the above in your HEAD tag ---------->\n' +

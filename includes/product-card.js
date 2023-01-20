@@ -17,7 +17,7 @@ export default function ProductCard({productItem}) {
     return (
         <div className={"product-card"}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={isExternalUrl ? imageUrl : `${Constants.HOST}${imageUrl}`}
+            <img src={isExternalUrl ? imageUrl : `${imageUrl}`}
                  className={"img-fluid"}
                  alt={title}
             />

@@ -5,7 +5,6 @@ import Navbar from "../../includes/navbar";
 import Footer from "../../includes/footer";
 import styles from "../../styles/Home.module.css";
 import {useRouter} from 'next/router';
-import Link from "next/link";
 
 export default function Producto({id, productInfo}) {
     const [isLoading, setIsLoading] = useState(false);

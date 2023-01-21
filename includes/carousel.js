@@ -1,4 +1,5 @@
 import Constants from "../constants/Constants";
+import Image from "next/image";
 
 export default function Carousel({carouselImages = []}) {
 
@@ -11,10 +12,15 @@ export default function Carousel({carouselImages = []}) {
                             <div key={item.id}>
                                 <div className={`carousel-item ${index === 0 && "active"}`}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={`${item.attributes.url}`}
-                                        alt={item.attributes.name}
-                                        className="d-block w-100"/>
+                                    <div style={{width: '100%', height: 450, position: 'relative'}}>
+                                        <Image
+                                            src={`${item.attributes.url}`}
+                                            layout="fill"
+                                            objectFit="contain"
+                                            loading="eager"
+                                            alt={item.attributes.name}
+                                            className="d-block w-100"/>
+                                    </div>
                                 </div>
                             </div>
                         ))
@@ -37,10 +43,15 @@ export default function Carousel({carouselImages = []}) {
     if (carouselImages?.length === 1) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
-            <img
-                src={`${carouselImages[0].attributes.url}`}
-                alt={carouselImages[0].attributes.name}
-                className="d-block w-100"/>
+            <div style={{width: '100%', height: 450, position: 'relative'}}>
+                <Image
+                    layout="fill"
+                    objectFit="contain"
+                    loading="eager"
+                    src={`${carouselImages[0].attributes.url}`}
+                    alt={carouselImages[0].attributes.name}
+                    className="d-block w-100"/>
+            </div>
         )
     }
     if (carouselImages?.length === 0) {

@@ -8,25 +8,31 @@ import Carousel from "../includes/carousel";
 import Constants from "../constants/Constants";
 import ProductCard from "../includes/product-card";
 import Link from "next/link";
-import GetPageProps from "../helpers/GetPageProps";
+import GetSidebarProps from "../helpers/GetSidebarProps";
+import SidebarRight from "../includes/sidebarRight";
+import GetNavbarProps from "../helpers/GetNavbarProps";
 
-export default function Home({content, products, otherProps}) {
+export default function Home({
+    content,
+    products,
+    sidebarProps,
+    navbarProps,
+}) {
     const productosDestacados = products.length > 0 && products.filter((item) => item.attributes.destacado);
-
-    console.log('otherProps', otherProps);
 
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
 
             <main>
                 <div>
                     <div className="row">
                         <div className="col-2">
-                            <Sidebar headers={["teléfonos", "categorías", "envíos", "pagos", "certificaciones"]}
-                                     hydration={{
-                                         ...otherProps
+                            <Sidebar sidebarProps={{
+                                         ...sidebarProps
                                      }}
                             />
                         </div>
@@ -99,7 +105,9 @@ export default function Home({content, products, otherProps}) {
                             }
                         </div>
                         <div className="col-2">
-                            <Sidebar headers={["horario", "videos"]}
+                            <SidebarRight sidebarProps={{
+                                              ...sidebarProps
+                                          }}
                             />
                         </div>
                     </div>
@@ -120,13 +128,15 @@ export async function getServerSideProps() {
     const {data: {attributes: {inicio: content}}} = await homeData.json();
     const {data: products} = await productData.json();
 
-    const otherProps = await GetPageProps.getServerSideProps();
+    const sidebarProps = await GetSidebarProps.getServerSideProps();
+    const navbarProps = await GetNavbarProps.getServerSideProps();
 
     return {
         props: {
             content,
             products,
-            otherProps: otherProps.props
+            sidebarProps: sidebarProps.props,
+            navbarProps: navbarProps.props,
         }
     }
 }

@@ -11,23 +11,12 @@ import clientsIcon from '../public/images/clientes.png';
 import questionsIcon from '../public/images/preguntas.png';
 import certificatesIcon from '../public/images/certificados.png';
 
-export default function Navbar() {
-
-    const [logo, setLogo] = useState(null);
-    const [cartImage, setCartImage] = useState(null);
+export default function Navbar({navbarProps}) {
     const [cartCount, setCartCount] = useState(null);
 
     const getLogo = useCallback(async () => {
-        const [logoData, cartImageData, cartData] = await Promise.all([
-            fetch(`${Constants.HOST}/api/logo?populate=*`),
-            fetch(`${Constants.HOST}/api/imagen-carrito`),
-            fetch(`${Constants.HOST}/api/carritos?filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`),
-        ]);
-        const {data: {attributes: {imagen_url}}} = await logoData.json();
-        const {data: {attributes: {imagen_url: cartImageUrl}}} = await cartImageData.json();
-        const {data: cartCountData} = await cartData.json();
-        setLogo(imagen_url);
-        setCartImage(cartImageUrl);
+        const cartData = await fetch(`${Constants.HOST}/api/carritos?filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`);
+        const { data: cartCountData } = await cartData.json();
         setCartCount(cartCountData);
     }, []);
 
@@ -47,8 +36,13 @@ export default function Navbar() {
                 <div>
                     <span className={"style-me"}>
                     {
-                        logo && <Link href={"/"}><a><Image src={`${logo}`} className={styles.logo} width={100} height={90}
-                                       alt={"Logo"}/></a></Link>
+                        <Link href={"/"}>
+                            <a>
+                                <Image src={`${navbarProps?.logo}`} className={styles.logo} width={100} height={90}
+                                       loading="eager"
+                                       alt={"Logo"}/>
+                            </a>
+                        </Link>
                     }
                     </span>
                 </div>
@@ -65,8 +59,8 @@ export default function Navbar() {
                     <Link href={"/cart"}>
                         <a>
                             {
-                                cartImage &&
-                                <Image src={`${cartImage}`} className={styles.logo} width={100}
+                                <Image src={`${navbarProps?.cartImage}`} className={styles.logo} width={100}
+                                       loading="eager"
                                        height={60}
                                        alt={"Carrito"}/>
                             }
@@ -79,7 +73,7 @@ export default function Navbar() {
                     <li>
                         <Link href="/">
                             <a>
-                                <Image src={homeIcon} width={20} height={20} alt="Inicio"/>
+                                <Image src={homeIcon} loading="eager" width={20} height={20} alt="Inicio"/>
                                 <span>Inicio</span>
                             </a>
                         </Link>
@@ -87,22 +81,22 @@ export default function Navbar() {
                     <li>
                         <Link href="/nosotros">
                             <a>
-                                <Image src={usIcon} width={20} height={20} alt="Quiénes somos"/>
+                                <Image src={usIcon} loading="eager" width={20} height={20} alt="Quiénes somos"/>
                                 <span>Quiénes Somos</span>
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/clientes"><a><Image src={clientsIcon} width={20} height={20} alt="Clientes"/>
+                        <Link href="/clientes"><a><Image src={clientsIcon} loading="eager" width={20} height={20} alt="Clientes"/>
                             <span>Clientes</span>
                         </a></Link>
                     </li>
                     <li>
-                        <Link href="/preguntas"><a><Image src={questionsIcon} width={20} height={20} alt="Preguntas"/>
+                        <Link href="/preguntas"><a><Image src={questionsIcon} loading="eager" width={20} height={20} alt="Preguntas"/>
                             <span>Preguntas Frecuentes</span></a></Link>
                     </li>
                     <li>
-                        <Link href="/certificaciones"><a><Image src={certificatesIcon} width={20} height={20}
+                        <Link href="/certificaciones"><a><Image src={certificatesIcon} loading="eager" width={20} height={20}
                                                                 alt="Certificaciones"/>
                             <span>Certificaciones</span>
                         </a></Link>

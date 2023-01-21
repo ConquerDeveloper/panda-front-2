@@ -10,25 +10,35 @@ import Footer from "../../includes/footer";
 import Constants from "../../constants/Constants";
 import ProductCard from "../../includes/product-card";
 import Link from "next/link";
+import GetSidebarProps from "../../helpers/GetSidebarProps";
+import GetNavbarProps from "../../helpers/GetNavbarProps";
+import SidebarRight from "../../includes/sidebarRight";
 
 export default function Categoria({
   carousel,
   title,
   description,
   products,
-  subcategories
+  subcategories,
+  sidebarProps,
+  navbarProps,
 }) {
 
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
 
             <main>
                 <div>
                     <div className="row">
                         <div className="col-2">
-                            <Sidebar headers={["teléfonos", "categorías", "envíos", "pagos", "certificaciones"]}/>
+                            <Sidebar sidebarProps={{
+                                ...sidebarProps
+                            }}
+                            />
                         </div>
                         <div className="col-8">
                             <div className={"content p-3"}>
@@ -110,7 +120,10 @@ export default function Categoria({
                             }
                         </div>
                         <div className="col-2">
-                            <Sidebar headers={["horario", "videos"]}/>
+                            <SidebarRight sidebarProps={{
+                                ...sidebarProps
+                            }}
+                            />
                         </div>
                     </div>
                 </div>
@@ -119,17 +132,6 @@ export default function Categoria({
         </div>
     );
 }
-
-/*export async function getStaticPaths() {
-    const res = await fetch(`${Constants.HOST}/api/categorias`)
-    const categories = await res.json()
-
-    const paths = categories.data.map((category) => ({
-        params: {id: category.id.toString()},
-    }))
-
-    return {paths, fallback: false}
-}*/
 
 export async function getServerSideProps(context) {
 
@@ -147,6 +149,9 @@ export async function getServerSideProps(context) {
         }
     } = await pageData.json();
 
+    const sidebarProps = await GetSidebarProps.getServerSideProps();
+    const navbarProps = await GetNavbarProps.getServerSideProps();
+
     return {
         props: {
             carousel,
@@ -154,6 +159,8 @@ export async function getServerSideProps(context) {
             description,
             products,
             subcategories,
+            sidebarProps: sidebarProps.props,
+            navbarProps: navbarProps.props,
         },
     }
 }

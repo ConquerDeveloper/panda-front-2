@@ -5,8 +5,13 @@ import Navbar from "../../includes/navbar";
 import Footer from "../../includes/footer";
 import styles from "../../styles/Home.module.css";
 import {useRouter} from 'next/router';
+import GetNavbarProps from "../../helpers/GetNavbarProps";
 
-export default function Producto({id, productInfo}) {
+export default function Producto({
+    id,
+    productInfo,
+    navbarProps,
+}) {
     const [isLoading, setIsLoading] = useState(false);
     const [isPurchaseLoading, setIsPurchaseLoading] = useState(false);
     const router = useRouter();
@@ -66,7 +71,9 @@ export default function Producto({id, productInfo}) {
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
             <main>
                 <div>
                     <div className="row">
@@ -180,17 +187,6 @@ export default function Producto({id, productInfo}) {
         </div>
     )
 }
-/*
-export async function getStaticPaths() {
-    const res = await fetch(`${Constants.HOST}/api/productos/?populate[imagen][populate][0]=imagen&populate[categorias][populate][0]=categoria`)
-    const products = await res.json()
-
-    const paths = products.data.map((product) => ({
-        params: {id: product.id.toString()},
-    }))
-
-    return {paths, fallback: false}
-}*/
 
 export async function getServerSideProps(context) {
 
@@ -203,10 +199,13 @@ export async function getServerSideProps(context) {
         },
     } = await pageData.json();
 
+    const navbarProps = await GetNavbarProps.getServerSideProps();
+
     return {
         props: {
             id,
             productInfo,
+            navbarProps: navbarProps.props,
         },
     }
 }

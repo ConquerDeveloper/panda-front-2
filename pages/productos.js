@@ -5,8 +5,9 @@ import styles from "../styles/Home.module.css";
 import Footer from "../includes/footer";
 import Constants from "../constants/Constants";
 import ProductCard from "../includes/product-card";
+import GetNavbarProps from "../helpers/GetNavbarProps";
 
-export default function Productos({categoriesList}) {
+export default function Productos({categoriesList, navbarProps}) {
 
     const [products, setProducts] = useState([]);
     const [checkboxCollection, setCheckboxCollection] = useState([]);
@@ -61,12 +62,12 @@ export default function Productos({categoriesList}) {
         }
     }, [checkboxCollection]);
 
-    console.log("paginationData", paginationData);
-
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }}/>
 
             <main>
                 <div>
@@ -180,10 +181,12 @@ export async function getServerSideProps() {
         fetch(`${Constants.HOST}/api/categorias`)
     ]);
     const {data: categoriesList} = await categoriesData.json();
+    const navbarProps = await GetNavbarProps.getServerSideProps();
 
     return {
         props: {
             categoriesList,
+            navbarProps: navbarProps.props,
         }
     }
 }

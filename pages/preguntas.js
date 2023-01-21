@@ -7,18 +7,30 @@ import Carousel from "../includes/carousel";
 import Constants from "../constants/Constants";
 import whoStyles from "../styles/Nosotros.module.css";
 import ReactMarkdown from "react-markdown";
+import GetSidebarProps from "../helpers/GetSidebarProps";
+import GetNavbarProps from "../helpers/GetNavbarProps";
+import SidebarRight from "../includes/sidebarRight";
 
-export default function Preguntas({preguntas}) {
+export default function Preguntas({
+                                      preguntas,
+                                      sidebarProps,
+                                      navbarProps,
+}) {
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
 
             <main>
                 <div>
                     <div className="row">
                         <div className="col-2">
-                            <Sidebar headers={["teléfonos", "categorías", "envíos", "pagos", "certificaciones"]}/>
+                            <Sidebar sidebarProps={{
+                                ...sidebarProps
+                            }}
+                            />
                         </div>
                         <div className="col-8">
                             <div className={`${styles.content} content p-3`}>
@@ -34,7 +46,10 @@ export default function Preguntas({preguntas}) {
                             </div>
                         </div>
                         <div className="col-2">
-                            <Sidebar headers={["horario", "videos"]}/>
+                            <SidebarRight sidebarProps={{
+                                ...sidebarProps
+                            }}
+                            />
                         </div>
                     </div>
                 </div>
@@ -48,9 +63,14 @@ export async function getServerSideProps() {
     const pageData = await fetch(`${Constants.HOST}/api/pregunta?populate[preguntas][populate][0]=carrusel`);
     const {data: {attributes: {preguntas}}} = await pageData.json();
 
+    const sidebarProps = await GetSidebarProps.getServerSideProps();
+    const navbarProps = await GetNavbarProps.getServerSideProps();
+
     return {
         props: {
-            preguntas
+            preguntas,
+            sidebarProps: sidebarProps.props,
+            navbarProps: navbarProps.props,
         },
     }
 }

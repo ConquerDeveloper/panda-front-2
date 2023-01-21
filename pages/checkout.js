@@ -7,8 +7,9 @@ import Footer from "../includes/footer";
 import emailTemplate from "../includes/email-template";
 import Router from "next/router";
 import Link from "next/link";
+import GetNavbarProps from "../helpers/GetNavbarProps";
 
-export default function Checkout() {
+export default function Checkout({navbarProps}) {
 
     const [buyerName, setBuyerName] = useState("");
     const [buyerLastName, setBuyerLastName] = useState("");
@@ -94,7 +95,9 @@ export default function Checkout() {
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
             <main>
                 <div>
                     <div className="row">
@@ -206,7 +209,7 @@ export default function Checkout() {
                                                                                             <h3 className={"ml-5"}>{productList[0].attributes.titulo}</h3>
                                                                                         </a>
                                                                                     </Link>
-                                                                                    <p>Categoría: {productList[0].attributes.categorias.data[0].attributes.nombre}</p>
+                                                                                    <p>Categoría: {productList[0]?.attributes?.categorias?.data[0]?.attributes?.nombre}</p>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="price">
@@ -272,10 +275,11 @@ export default function Checkout() {
 export async function getServerSideProps() {
     const pageData = await fetch(`${Constants.HOST}/api/carritos?populate[productos][populate][0]=imagen&populate[productos][populate][1]=categorias`)
     const {data: cartList} = await pageData.json();
-
+    const navbarProps = await GetNavbarProps.getServerSideProps();
     return {
         props: {
-            cartList
+            cartList,
+            navbarProps: navbarProps.props,
         },
     }
 }

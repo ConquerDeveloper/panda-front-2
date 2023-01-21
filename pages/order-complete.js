@@ -7,6 +7,7 @@ import Constants from "../constants/Constants";
 import React, {useEffect, useCallback, useState} from "react";
 import { withRouter } from 'next/router';
 import emailTemplate from "../includes/email-template";
+import GetNavbarProps from "../helpers/GetNavbarProps";
 
 function OrderComplete(props) {
     const [cartList, setCartList] = useState([]);
@@ -64,7 +65,9 @@ function OrderComplete(props) {
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...props.navbarProps
+            }}/>
             <main>
                 <div>
                     <div className="row">
@@ -108,7 +111,7 @@ function OrderComplete(props) {
                                                                             </div>
                                                                             <div className={"product-details"}>
                                                                                 <h3 className={"ml-5"}>{productList[0].attributes.titulo}</h3>
-                                                                                <p>Categoría: {productList[0].attributes.categorias.data[0].attributes.nombre}</p>
+                                                                                <p>Categoría: {productList[0]?.attributes?.categorias?.data[0]?.attributes?.nombre}</p>
                                                                             </div>
                                                                             <div className="price">
                                                                                 <h1>${productList[0].attributes.precio_unidad.toLocaleString('en-US')}CLP</h1>
@@ -139,6 +142,16 @@ function OrderComplete(props) {
             <Footer/>
         </div>
     )
+}
+
+export async function getServerSideProps() {
+    const navbarProps = await GetNavbarProps.getServerSideProps();
+
+    return {
+        props: {
+            navbarProps: navbarProps.props,
+        }
+    }
 }
 
 export default withRouter(OrderComplete);

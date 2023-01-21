@@ -5,8 +5,9 @@ import styles from "../styles/Home.module.css";
 import Constants from "../constants/Constants";
 import Footer from "../includes/footer";
 import Link from "next/link";
+import GetNavbarProps from "../helpers/GetNavbarProps";
 
-export default function Cart() {
+export default function Cart({navbarProps}) {
 
     const [cartList, setCartList] = useState([]);
 
@@ -57,7 +58,9 @@ export default function Cart() {
     return (
         <div className={"page-container"}>
             <Header/>
-            <Navbar/>
+            <Navbar navbarProps={{
+                ...navbarProps
+            }} />
             <main>
                 <div>
                     <div className="row">
@@ -81,7 +84,7 @@ export default function Cart() {
                                                                         <div className={"product-preview-container"}>
                                                                             <div>
                                                                                 <img
-                                                                                    src={`${Constants.HOST}${productList[0].attributes.imagen.data[0].attributes.url}`}
+                                                                                    src={`${productList[0].attributes.imagen.data[0].attributes.url}`}
                                                                                     width={48}
                                                                                     alt={productList[0].attributes.titulo}/>
                                                                             </div>
@@ -91,7 +94,7 @@ export default function Cart() {
                                                                                         <h3 className={"ml-5"}>{productList[0].attributes.titulo}</h3>
                                                                                     </a>
                                                                                 </Link>
-                                                                                <p>Categoría: {productList[0].attributes.categorias.data[0].attributes.nombre}</p>
+                                                                                <p>Categoría: {productList[0]?.attributes?.categorias?.data[0]?.attributes?.nombre}</p>
                                                                                 <div className={"cta-container"}>
                                                                                     <button type="button"
                                                                                             onClick={() => handleRemove(id)}
@@ -143,3 +146,13 @@ export default function Cart() {
         </div>
     )
 };
+
+export async function getServerSideProps() {
+    const navbarProps = await GetNavbarProps.getServerSideProps();
+
+    return {
+        props: {
+            navbarProps: navbarProps.props,
+        }
+    }
+}

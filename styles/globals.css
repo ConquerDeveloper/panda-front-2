@@ -132,12 +132,14 @@ main {
 .video-container .opacity {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 8px;
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, .3);
-    width: 100%;
+    width: 150px;
     z-index: 1;
+    height: 80px;
+    border-radius: 5px;
 }
 
 .video-container .youtubeButton {
@@ -244,6 +246,15 @@ main {
     font-size: 14px;
     margin-top: 3px;
     text-transform: uppercase;
+}
+
+.subcategory span[role="list"] {
+    border-bottom: none !important;
+    margin-bottom: 3px !important;
+    font-size: 14px;
+    margin-top: 3px;
+    text-transform: uppercase;
+    display: block;
 }
 
 .search-result div {

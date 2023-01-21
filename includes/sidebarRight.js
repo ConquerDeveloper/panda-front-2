@@ -53,11 +53,13 @@ export default function SidebarRight({
                                             <a rel={"noreferrer"}>
                                                 <div className="opacity"></div>
                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <Image src={`${item.attributes.imagen_url}`}
-                                                       loading="eager"
-                                                       width={150}
-                                                       height={80}
-                                                       alt="Antibalas"/>
+                                                <div style={{width: 165, height: 82, position: 'relative'}}>
+                                                    <Image src={`${item.attributes.imagen_url}`}
+                                                           loading="eager"
+                                                           layout="fill"
+                                                           objectFit="contain"
+                                                           alt="Antibalas"/>
+                                                </div>
                                                 <div className={"youtubeButton"}>
                                                     <Image src={youtubeLogo} width={60} height={40} loading="eager" alt=""/>
                                                 </div>
@@ -74,3 +76,6 @@ export default function SidebarRight({
         </aside>
     );
 }
+
+//        width={150}
+//                                                            height={80}

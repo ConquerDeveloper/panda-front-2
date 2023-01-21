@@ -132,13 +132,13 @@ main {
 .video-container .opacity {
     position: absolute;
     top: 0;
-    left: 8px;
+    left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, .3);
-    width: 150px;
+    background: rgba(0,0,0,.3);
+    width: 100%;
     z-index: 1;
-    height: 80px;
+    height: auto;
     border-radius: 5px;
 }
 

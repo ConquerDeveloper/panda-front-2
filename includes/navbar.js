@@ -22,8 +22,7 @@ export default function Navbar() {
             fetch(`${Constants.HOST}/api/logo?populate=*`),
             fetch(`${Constants.HOST}/api/imagen-carrito`),
             fetch(`${Constants.HOST}/api/carritos?filters[client_id][$eq]=${window.sessionStorage.getItem('client_id')}&filters[comprado][$eq]=${false}`),
-        ])
-        //const {data: {attributes: {imagen: {data: {attributes: {url: logoUrl}}}}}} = await logoData.json();
+        ]);
         const {data: {attributes: {imagen_url}}} = await logoData.json();
         const {data: {attributes: {imagen_url: cartImageUrl}}} = await cartImageData.json();
         const {data: cartCountData} = await cartData.json();

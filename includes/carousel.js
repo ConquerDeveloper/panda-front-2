@@ -17,7 +17,7 @@ export default function Carousel({carouselImages = []}) {
                                             src={`${item.attributes.url}`}
                                             layout="fill"
                                             objectFit="contain"
-                                            loading="eager"
+                                            priority
                                             alt={item.attributes.name}
                                             className="d-block w-100"/>
                                     </div>
@@ -47,7 +47,7 @@ export default function Carousel({carouselImages = []}) {
                 <Image
                     layout="fill"
                     objectFit="contain"
-                    loading="eager"
+                    priority
                     src={`${carouselImages[0].attributes.url}`}
                     alt={carouselImages[0].attributes.name}
                     className="d-block w-100"/>

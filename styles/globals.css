@@ -259,6 +259,7 @@ main {
     font-size: 14px !important;
     font-weight: bold !important;
     color: var(--bs-link-color) !important;
+    margin-left: 5px;
 }
 
 .search-result div > span {

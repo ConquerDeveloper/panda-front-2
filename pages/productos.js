@@ -124,11 +124,11 @@ export default function Productos({categoriesList}) {
                                                            placeholder={"Ej: Placa antibalas"}/>
                                                 </div>
                                                 <div className="clearfix"></div>
-                                                <div className="row mt-2">
+                                                <div className="row">
                                                     {
                                                         products.length ? products.map((item) => {
                                                                 return (
-                                                                    <div className={`col-3 text-start`} key={item.id}>
+                                                                    <div className={`col-3 text-start my-3`} key={item.id}>
                                                                         <ProductCard productItem={item}/>
                                                                     </div>
                                                                 )
@@ -136,7 +136,7 @@ export default function Productos({categoriesList}) {
                                                             <p className="text-start">No hay productos disponibles</p>
                                                     }
                                                 </div>
-                                                {
+                                 {/*               {
                                                     paginationData?.total > paginationData?.pageSize &&
                                                     <div className="row mt-5">
                                                         <div className="col-12">
@@ -159,7 +159,7 @@ export default function Productos({categoriesList}) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                }
+                                                }*/}
                                             </div>
                                         </div>
                                     </div>

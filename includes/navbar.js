@@ -48,8 +48,8 @@ export default function Navbar() {
                 <div>
                     <span className={"style-me"}>
                     {
-                        logo && <Image src={`${logo}`} className={styles.logo} width={100} height={90}
-                                       alt={"Logo"}/>
+                        logo && <Link href={"/"}><a><Image src={`${logo}`} className={styles.logo} width={100} height={90}
+                                       alt={"Logo"}/></a></Link>
                     }
                     </span>
                 </div>

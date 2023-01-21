@@ -11,7 +11,7 @@ export default function Search() {
             if (value === "") {
                 setSearchDropdownVisible(false);
             } else {
-                const result = await fetch(`${Constants.HOST}/api/productos?populate=*&filters[titulo][$contains]=${value}`);
+                const result = await fetch(`${Constants.HOST}/api/productos?populate=*&filters[titulo][$containsi]=${value}`);
                 if (result.status === 200) {
                     const {data} = await result.json();
                     setSearchResult(data);
@@ -36,7 +36,7 @@ export default function Search() {
                             return (
                                 <div key={id}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={`${Constants.HOST}${image[0].attributes.url}`} width={20}
+                                    <img src={`${image[0].attributes.url}`} width={20}
                                          alt={titulo}/>
                                     <Link href={`/productos/${id}`}>
                                         <a>{titulo}</a>

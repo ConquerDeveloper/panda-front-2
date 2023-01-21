@@ -8,9 +8,12 @@ import Carousel from "../includes/carousel";
 import Constants from "../constants/Constants";
 import ProductCard from "../includes/product-card";
 import Link from "next/link";
+import GetPageProps from "../helpers/GetPageProps";
 
-export default function Home({content, products}) {
+export default function Home({content, products, otherProps}) {
     const productosDestacados = products.length > 0 && products.filter((item) => item.attributes.destacado);
+
+    console.log('otherProps', otherProps);
 
     return (
         <div className={"page-container"}>
@@ -21,7 +24,11 @@ export default function Home({content, products}) {
                 <div>
                     <div className="row">
                         <div className="col-2">
-                            <Sidebar headers={["teléfonos", "categorías", "envíos", "pagos", "certificaciones"]}/>
+                            <Sidebar headers={["teléfonos", "categorías", "envíos", "pagos", "certificaciones"]}
+                                     hydration={{
+                                         ...otherProps
+                                     }}
+                            />
                         </div>
                         <div className="col-8">
                             <div className={"content p-3"}>
@@ -113,10 +120,13 @@ export async function getServerSideProps() {
     const {data: {attributes: {inicio: content}}} = await homeData.json();
     const {data: products} = await productData.json();
 
+    const otherProps = await GetPageProps.getServerSideProps();
+
     return {
         props: {
             content,
             products,
+            otherProps: otherProps.props
         }
     }
 }

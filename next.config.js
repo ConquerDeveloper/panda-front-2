@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['aqueous-forest-78024.herokuapp.com', 'res.cloudinary.com'],
+    domains: ['aqueous-forest-78024.herokuapp.com', 'res.cloudinary.com', 'localhost'],
   },
 }
 

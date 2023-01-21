@@ -6,8 +6,9 @@ import youtubeLogo from '../public/images/youtube-logo.webp';
 import Image from "next/image";
 
 export default function Sidebar({
-                                    headers
-                                }) {
+    headers,
+    hydration
+}) {
 
     const [categories, setCategories] = useState([]);
     const [phones, setPhones] = useState(null);
@@ -59,7 +60,7 @@ export default function Sidebar({
                         <h1>Teléfonos</h1>
                     </header>
                     <main>
-                        <ReactMarkdown>{phones?.attributes?.telefonos}</ReactMarkdown>
+                        <ReactMarkdown>{hydration?.phone?.attributes?.telefonos}</ReactMarkdown>
                     </main>
                 </section>
                 <section>

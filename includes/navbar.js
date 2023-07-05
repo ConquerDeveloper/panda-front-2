@@ -47,7 +47,7 @@ export default function Navbar({navbarProps}) {
                     </span>
                 </div>
                 <div>
-                    <h1>PANDA STORE SPA</h1>
+                    <h1>BLINDAJES PANDA</h1>
                 </div>
                 <div style={{height: 100, position: "relative"}}>
                     {
